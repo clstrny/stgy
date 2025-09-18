@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-t" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claynosaurz Strategy</title>
+    <meta
+      name="description"
+      content="A community-driven strategy platform for the Claynosaurz ecosystem."
+    />
+
+    <link rel="icon" type="image/png" href="https://i.ibb.co/yngK4QG3/channels4-profile.jpg" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/yngK4QG3/channels4-profile.jpg" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+      :root {
+        --bg-color: #eef1d6;
+        --primary-color: #26A69A;
+        --card-bg-color: rgba(38, 166, 154, 0.7);
+        --text-color: #37474F;
+        --text-muted-color: #546E7A;
+        --border-color: rgba(38, 166, 154, 0.2);
+        --btn-text-color: #FFFFFF;
+        --card-border-color: rgba(255, 255, 255, 0.2);
+        --card-text-color: rgba(255, 255, 255, 0.95);
+        --card-text-muted-color: rgba(255, 255, 255, 0.7);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Bubblegum Sans', system-ui, -apple-system, Segoe UI,
+          Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--text-color);
+      }
+      .header-bg {
+        background-color: rgba(238, 241, 214, 0.6);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .card {
+        background: var(--card-bg-color);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--card-border-color);
+        border-radius: 1rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        color: var(--card-text-color);
+      }
+      .card .text-text-muted-color {
+        color: var(--card-text-muted-color);
+      }
+      .accent-text {
+        color: var(--primary-color);
+      }
+      
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: var(--btn-text-color);
+        font-weight: 600;
+        transition: filter 0.2s;
+      }
+      .btn-primary:hover {
+        filter: brightness(1.1);
+      }
+      .btn-secondary {
+        border: 1px solid var(--border-color);
+        color: var(--primary-color);
+        background-color: transparent;
+        font-weight: 600;
+        transition: background-color 0.2s;
+      }
+      .btn-secondary:hover {
+        background-color: rgba(38, 166, 154, 0.1);
+      }
+      .badge-primary {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border: 1px solid var(--card-border-color);
+        font-weight: 600;
+      }
+      #progressBar {
+        background-color: var(--primary-color);
+      }
+
+      .rods-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem; 
+        pointer-events: none;
+      }
+      .rods {
+        max-width: 420px;
+        width: 50vw; 
+        height: auto;
+        opacity: 0.9;
+        animation: castRock 8s ease-in-out infinite;
+      }
+      @keyframes castRock {
+        0% { transform: rotate(1.2deg) translateY(0); }
+        35% { transform: rotate(-1.6deg) translateY(3px); }
+        70% { transform: rotate(0.9deg) translateY(1px); }
+        100% { transform: rotate(1.2deg) translateY(0); }
+      }
+      @media (prefers-reduced-motion: reduce) { .rods { animation: none; } }
+      @media (max-width: 640px) { .rods { max-width: 280px; width: 70vw; } }
+
+      .nft-tile {
+        transition: transform 0.15s ease, border-color 0.15s ease;
+        border: 1px solid var(--card-border-color);
+        background: rgba(0,0,0,0.1);
+      }
+      .nft-tile:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255,255,255,0.4);
+      }
+      
+      #dexscreener-embed{position:relative;width:100%;padding-bottom:125%;}
+      @media(min-width:1400px){#dexscreener-embed{padding-bottom:65%;}}
+      #dexscreener-embed iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:0;}
+    </style>
+  </head>
+  <body class="antialiased">
+    <header class="fixed inset-x-0 top-0 z-50 header-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="h-24 flex items-center justify-between">
+          <a href="#" class="flex items-center gap-3">
+            <img
+              class="h-14 w-14 rounded-md border border-black/10"
+              src="https://i.ibb.co/yngK4QG3/channels4-profile.jpg"
+              alt="Claynosaurz Strategy"
+            />
+            <span class="font-semibold text-xl hidden sm:inline">Claynosaurz Strategy</span>
+          </a>
+          <div class="flex items-center gap-4">
+            <nav class="hidden md:flex items-center gap-2 text-lg">
+              <a href="#home" class="px-3 py-2 rounded-full hover:bg-black/5"
+                >Home</a
+              >
+              <a href="#how" class="px-3 py-2 rounded-full hover:bg-black/5"
+                >How It Works</a
+              >
+              <a href="#faq" data-action="open-faq" class="px-3 py-2 rounded-full hover:bg-black/5"
+                >FAQ</a
+              >
+            </nav>
+            <div class="flex items-center gap-2">
+              <a id="headerTwitterLink" href="https://x.com/CLYNSTRG" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-2 rounded-lg hover:bg-black/5 accent-text" aria-label="Follow us on Twitter">
+                <i data-feather="twitter"></i>
+              </a>
+              <a
+                href="app.html"
+                id="headerEnterAppBtn"
+                class="inline-flex px-6 py-3 text-lg rounded-full btn-primary"
+                >Enter App</a
+              >
+              <button
+                id="burger"
+                class="md:hidden p-2 rounded-lg hover:bg-black/5"
+                aria-label="Open menu"
+              >
+                <i data-feather="menu"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div
+      id="mobileMenu"
+      class="md:hidden fixed inset-x-0 top-24 z-40 header-bg hidden"
+    >
+      <nav class="max-w-7xl mx-auto px-4 py-4 grid gap-2 text-2xl">
+        <a href="#home" class="px-3 py-2 rounded-xl hover:bg-black/5">Home</a>
+        <a href="#how" class="px-3 py-2 rounded-xl hover:bg-black/5">How It Works</a>
+        <a href="#faq" data-action="open-faq" class="px-3 py-2 rounded-xl hover:bg-black/5">FAQ</a>
+      </nav>
+    </div>
+
+    <div id="landingView">
+      <section class="relative min-h-screen flex items-center justify-center" id="home">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 w-full">
+          <div class="text-center">
+            <div class="rods-wrap">
+              <img src="https://i.ibb.co/dJgfVHB3/LOGO1.png" alt="Claynosaurz Strategy Logo" class="rods" />
+            </div>
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight mb-4">
+              The Perpetual Claynosaurz Machine
+            </h1>
+            <p class="text-xl sm:text-2xl md:text-4xl max-w-3xl mx-auto mb-8 text-text-muted-color">
+              A community-driven strategy platform for the Claynosaurz ecosystem.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="app.html" class="px-10 py-5 text-xl rounded-full btn-primary shadow">Enter App</a>
+              <a id="heroBuyLink" href="#" class="px-10 py-5 text-xl rounded-full btn-secondary">Buy $CLYNSTR</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="how" class="pt-8 md:pt-12 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-3xl">
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-3">
+              We call it, The Dino Engine™
+            </h2>
+            <p class="text-xl text-text-muted-color mb-8">
+              A loop that buys and sells floor Claynosaurz while burning token
+              supply — endlessly.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-4 gap-6">
+            <div class="card p-8"><div class="flex items-center justify-between mb-4"><span class="text-xs uppercase tracking-widest text-text-muted-color">Step 1</span><i data-feather="percent"></i></div><p class="text-xl">A fixed percentage of each trade is taxed and pooled.</p></div>
+            <div class="card p-8"><div class="flex items-center justify-between mb-4"><span class="text-xs uppercase tracking-widest text-text-muted-color">Step 2</span><i data-feather="shopping-bag"></i></div><p class="text-xl">When the pool has enough SOL, we buy a target Claynosaur.</p></div>
+            <div class="card p-8"><div class="flex items-center justify-between mb-4"><span class="text-xs uppercase tracking-widest text-text-muted-color">Step 3</span><i data-feather="tag"></i></div><p class="text-xl">The Dino is listed for resale at a markup (e.g. <strong>1.2×</strong>).</p></div>
+            <div class="card p-8"><div class="flex items-center justify-between mb-4"><span class="text-xs uppercase tracking-widest text-text-muted-color">Step 4</span><i data-feather="flame"></i></div><p class="text-xl">On sale, proceeds are used for buybacks & burns. Repeat ⚡</p></div>
+          </div>
+        </div>
+      </section>
+      <footer class="border-t border-border-color py-10 text-base">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-6">
+          <div>
+            <p class="font-semibold">Claynosaurz Strategy</p>
+            <p class="text-text-muted-color mt-2">We are not affiliated with Claynosaurz. Use at your own risk.</p>
+            <p class="text-black/40 mt-2">© <span id="year"></span> Claynosaurz Strategy. All rights reserved.</p>
+          </div>
+          <div class="flex items-center justify-start md:justify-end gap-6">
+             <a href="#" class="text-text-muted-color hover:text-text-color transition-colors">Terms</a>
+             <a href="#" class="text-text-muted-color hover:text-text-color transition-colors">Privacy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <div id="faqModal" class="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+      <div id="faqModalContent" class="card p-8 w-full max-w-2xl relative">
+        <button id="closeFaqModal" class="absolute top-3 right-3 text-text-muted-color hover:text-text-color p-1" aria-label="Close FAQ"><i data-feather="x"></i></button>
+        <h2 class="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4 text-text-muted-color text-xl">
+          <p><strong>1.</strong> A fixed percentage of each trade is taxed and pooled.</p>
+          <p><strong>2.</strong> When the pool has enough SOL, we buy a target Claynosaurz.</p>
+          <p><strong>3.</strong> The Dino is listed for resale at a markup (e.g. 1.2×).</p>
+          <p><strong>4.</strong> On sale, proceeds are used for buybacks & burns. Repeat ⚡</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ================= CONFIG ================= */
+      const CONFIG = {
+        DS_PAIR_URL: 'https://dexscreener.com/solana/A66355n2QRQprKi9c2t14e5vPVMk8L3hVaTiW3fC67yK',
+      };
+
+      /* ================= Helpers ================= */
+      const $ = (s) => document.querySelector(s);
+      
+      /* ================= Initial Setup ================= */
+      feather.replace();
+      $('#year').textContent = new Date().getFullYear();
+      $('#burger')?.addEventListener('click', () => $('#mobileMenu').classList.toggle('hidden'));
+      
+      const heroBuyLink = $('#heroBuyLink');
+      if(heroBuyLink) {
+        heroBuyLink.href = CONFIG.DS_PAIR_URL;
+        heroBuyLink.target = '_blank';
+        heroBuyLink.rel = 'noopener noreferrer';
+      }
+
+      // Smooth scrolling for anchor links on the same page
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              if (this.dataset.action === 'open-faq') return;
+              e.preventDefault();
+              const targetId = this.getAttribute('href');
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                  const headerHeight = document.querySelector('header').offsetHeight;
+                  const offsetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight - 24;
+                  window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+              }
+              $('#mobileMenu').classList.add('hidden');
+          });
+      });
+
+      /* ================= FAQ Modal Logic ================= */
+      const faqModal = $('#faqModal');
+      const openFaqLinks = document.querySelectorAll('[data-action="open-faq"]');
+      const closeFaqModalBtn = $('#closeFaqModal');
+
+      openFaqLinks.forEach(link => link.addEventListener('click', (e) => {
+          e.preventDefault();
+          faqModal.classList.remove('hidden');
+          faqModal.classList.add('flex');
+          feather.replace();
+      }));
+      
+      const closeFaqModal = () => {
+          faqModal.classList.add('hidden');
+          faqModal.classList.remove('flex');
+      };
+
+      closeFaqModalBtn.addEventListener('click', closeFaqModal);
+      faqModal.addEventListener('click', e => { if (e.target === faqModal) closeFaqModal(); });
+      document.addEventListener('keydown', e => { if (e.key === "Escape") closeFaqModal(); });
+    </script>
+  </body>
+</html>
