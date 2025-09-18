@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-t" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claynosaurz Strategy App</title>
+    <meta
+      name="description"
+      content="A community-driven strategy platform for the Claynosaurz ecosystem."
+    />
+
+    <link rel="icon" type="image/png" href="https://i.ibb.co/yngK4QG3/channels4-profile.jpg" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/yngK4QG3/channels4-profile.jpg" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+      :root {
+        --bg-color: #eef1d6;
+        --primary-color: #26A69A;
+        --card-bg-color: rgba(38, 166, 154, 0.7);
+        --text-color: #37474F;
+        --text-muted-color: #546E7A;
+        --border-color: rgba(38, 166, 154, 0.2);
+        --btn-text-color: #FFFFFF;
+        --card-border-color: rgba(255, 255, 255, 0.2);
+        --card-text-color: rgba(255, 255, 255, 0.95);
+        --card-text-muted-color: rgba(255, 255, 255, 0.7);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Bubblegum Sans', system-ui, -apple-system, Segoe UI,
+          Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--text-color);
+      }
+      .header-bg {
+        background-color: rgba(238, 241, 214, 0.6);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .card {
+        background: var(--card-bg-color);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--card-border-color);
+        border-radius: 1rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        color: var(--card-text-color);
+      }
+      .card .text-text-muted-color {
+        color: var(--card-text-muted-color);
+      }
+      .accent-text {
+        color: var(--primary-color);
+      }
+      
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: var(--btn-text-color);
+        font-weight: 600;
+        transition: filter 0.2s;
+      }
+      .btn-primary:hover {
+        filter: brightness(1.1);
+      }
+      .btn-secondary {
+        border: 1px solid var(--border-color);
+        color: var(--primary-color);
+        background-color: transparent;
+        font-weight: 600;
+        transition: background-color 0.2s;
+      }
+      .btn-secondary:hover {
+        background-color: rgba(38, 166, 154, 0.1);
+      }
+      .badge-primary {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border: 1px solid var(--card-border-color);
+        font-weight: 600;
+      }
+      #progressBar {
+        background-color: var(--primary-color);
+      }
+
+      .nft-tile {
+        transition: transform 0.15s ease, border-color 0.15s ease;
+        border: 1px solid var(--card-border-color);
+        background: rgba(0,0,0,0.1);
+      }
+      .nft-tile:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255,255,255,0.4);
+      }
+      
+      #dexscreener-embed{position:relative;width:100%;padding-bottom:125%;}
+      @media(min-width:1400px){#dexscreener-embed{padding-bottom:65%;}}
+      #dexscreener-embed iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:0;}
+    </style>
+  </head>
+  <body class="antialiased">
+    <header class="fixed inset-x-0 top-0 z-50 header-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="h-24 flex items-center justify-between">
+          <a href="index.html" class="flex items-center gap-3">
+            <img
+              class="h-14 w-14 rounded-md border border-black/10"
+              src="https://i.ibb.co/yngK4QG3/channels4-profile.jpg"
+              alt="Claynosaurz Strategy"
+            />
+            <span class="font-semibold text-xl hidden sm:inline">Claynosaurz Strategy</span>
+          </a>
+          <div class="flex items-center gap-4">
+            <nav class="hidden md:flex items-center gap-2 text-lg">
+              <a href="index.html#home" class="px-3 py-2 rounded-full hover:bg-black/5"
+                >Home</a
+              >
+              <a href="index.html#how" class="px-3 py-2 rounded-full hover:bg-black/5"
+                >How It Works</a
+              >
+              <a href="index.html#faq" class="px-3 py-2 rounded-full hover:bg-black/5"
+                >FAQ</a
+              >
+            </nav>
+            <div class="flex items-center gap-2">
+              <a id="headerTwitterLink" href="https://x.com/CLYNSTRG" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-2 rounded-lg hover:bg-black/5 accent-text" aria-label="Follow us on Twitter">
+                <i data-feather="twitter"></i>
+              </a>
+              <a
+                href="#"
+                id="headerEnterAppBtn"
+                class="inline-flex px-6 py-3 text-lg rounded-full btn-primary"
+                >Buy $CLYNSTR</a
+              >
+              <button
+                id="burger"
+                class="md:hidden p-2 rounded-lg hover:bg-black/5"
+                aria-label="Open menu"
+              >
+                <i data-feather="menu"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div
+      id="mobileMenu"
+      class="md:hidden fixed inset-x-0 top-24 z-40 header-bg hidden"
+    >
+      <nav class="max-w-7xl mx-auto px-4 py-4 grid gap-2 text-2xl">
+        <a href="index.html#home" class="px-3 py-2 rounded-xl hover:bg-black/5">Home</a>
+        <a href="index.html#how" class="px-3 py-2 rounded-xl hover:bg-black/5">How It Works</a>
+        <a href="index.html#faq" class="px-3 py-2 rounded-xl hover:bg-black/5">FAQ</a>
+      </nav>
+    </div>
+    
+    <main id="appView" class="pt-32 pb-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          <div class="lg:col-span-3 space-y-6">
+            <div class="grid grid-cols-1 gap-6">
+                <div class="card p-8">
+                    <div class="flex flex-wrap lg:flex-nowrap justify-between items-start lg:items-baseline gap-y-2 gap-x-4 mb-4">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white">Treasury Status</h3>
+                        <div class="flex items-center gap-3 text-sm shrink-0 badge-primary px-3 py-1 rounded-full mt-2 lg:mt-0">
+                            <a id="treasuryLink" href="#" target="_blank" rel="noopener noreferrer" class="text-text-muted-color hover:text-white transition-colors duration-200">
+                               <span id="shortTreasuryAddress" class="font-mono"></span>
+                            </a>
+                            <button id="copyTreasury" class="flex items-center gap-1.5 text-text-muted-color hover:text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Copy wallet address">
+                                <i data-feather="copy" class="h-4 w-4"></i>
+                                <span id="copyTreasuryText">Copy</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-5xl sm:text-6xl font-bold" id="treasurySolLabel">— SOL</div>
+                </div>
+            </div>
+            <div class="card p-8">
+              <div class="flex flex-wrap gap-2 justify-between items-center mb-4">
+                <h3 class="text-2xl sm:text-3xl font-bold text-white">Progress to Next Purchase</h3>
+                <p id="missingLabel" class="text-lg text-text-muted-color">Missing — SOL · 0%</p>
+              </div>
+              <div class="h-5 w-full rounded-full bg-black/5 overflow-hidden border border-border-color">
+                <div id="progressBar" class="h-full rounded-full" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="card overflow-hidden">
+                <div class="p-4 border-b border-border-color flex flex-wrap justify-between items-center gap-2">
+                   <h3 class="font-bold text-xl text-white">Live Chart</h3>
+                   <div class="flex items-center gap-3 text-sm shrink-0 badge-primary px-3 py-1 rounded-full">
+                       <a id="tokenCALink" href="#" target="_blank" rel="noopener noreferrer" class="text-text-muted-color hover:text-white transition-colors duration-200">
+                           <span id="shortTokenCA" class="font-mono">CA: ...</span>
+                       </a>
+                       <button id="copyTokenCA" class="flex items-center gap-1.5 text-text-muted-color hover:text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Copy contract address">
+                           <i data-feather="copy" class="h-4 w-4"></i>
+                           <span id="copyTokenCAText">Copy</span>
+                       </button>
+                   </div>
+               </div>
+               <div id="dexscreener-embed">
+                 <iframe src="https://dexscreener.com/osmosis/3117-factory_osmo1n3n75av8awcnw4jl62n3l48e6e4sxqmaf97w5ua6ddu4s475q5qq9udvx4_alloyed_allSOL-ibc_498A0751C798A0D9A389AA3691123DADA57DAA4FE165D5C75894505B876BA6E4?embed=1&loadChartSettings=0&trades=0&chartLeftToolbar=0&chartDefaultOnMobile=1&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe>
+               </div>
+            </div>
+          </div>
+          <div class="lg:col-span-2 space-y-6">
+            <div class="card p-8">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl sm:text-3xl font-bold text-white">Claynosaurz Floor</h3>
+                <a id="magicEdenLink" href="#" target="_blank" rel="noopener noreferrer" class="transition-transform hover:scale-110">
+                  <img src="https://cryptocurrencyjobs.co/startups/assets/logos/magic-eden.f8f1b9ba2cddf66057551ce2b83ad34f38e17bdd335d71fe6c2f94cb4867545b_hu_774b6c10da8f62b9.jpg" alt="Magic Eden" class="h-6 w-6">
+                </a>
+              </div>
+              <div class="text-5xl sm:text-6xl font-bold" id="floorPriceLabel">— SOL</div>
+            </div>
+            <div class="card p-8">
+                <h3 class="text-2xl sm:text-3xl font-bold mb-4 flex items-baseline gap-2 text-white">
+                  Currently Holding 
+                  <span id="holding-count" class="badge-primary text-xs px-2 py-0.5 rounded-full">...</span>
+                </h3>
+                <div id="holding-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-[70vh] overflow-y-auto">
+                  <!-- populated by JS -->
+                </div>
+            </div>
+            <div class="card p-8">
+              <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-white">
+                Previously Sold
+              </h3>
+              <div id="previously-sold-grid">
+                <div class="text-center py-8 text-sm opacity-70">
+                  <p>A list of previously sold Claynosaurz will appear here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      /* ================= CONFIG ================= */
+      const QS = new URLSearchParams(location.search);
+      const CONFIG = {
+        SOL_RPC_URL: 'https://solana-rpc.publicnode.com',
+        NFT_CHAIN: 'solana',
+        COLLECTION_SLUG: 'claynosaurz',
+        TREASURY: '9YCN4wyyKc3oGFCpkCmqwmnhs6R79reHtWRNFBbgQMTj',
+        TOKEN_CA: 'H82j5b4KVqF8DBP5JWRa5j2DEu5zL85exx28sS9p2aCq',
+        PRICE_OVERRIDE_SOL: QS.get('price') != null ? Number(QS.get('price')) : null,
+        DS_PAIR_URL: 'https://dexscreener.com/solana/A66355n2QRQprKi9c2t14e5vPVMk8L3hVaTiW3fC67yK',
+      };
+
+      /* ================= Helpers ================= */
+      const $ = (s) => document.querySelector(s);
+      const fmtSol = (n) => {
+        if (n === 0) return '0';
+        if (!isFinite(n)) return '—';
+        const v = Number(n);
+        return (v >= 0.1 ? v.toFixed(3) : v.toPrecision(3)).replace(/0+$/, '').replace(/\.$/, '');
+      };
+      async function getJson(url, options = {}) {
+        const r = await fetch(url, { 
+            cache: 'no-store',
+            headers: {
+                'accept': 'application/json',
+                ...options.headers
+            },
+            ...options
+        });
+        if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + url);
+        return r.json();
+      }
+      
+      /* ================= Initial Setup ================= */
+      feather.replace();
+      $('#burger')?.addEventListener('click', () => $('#mobileMenu').classList.toggle('hidden'));
+      $('#magicEdenLink').href = `https://magiceden.io/marketplace/${CONFIG.COLLECTION_SLUG}`;
+      
+      const headerBtn = $('#headerEnterAppBtn');
+      if (headerBtn) {
+          headerBtn.href = CONFIG.DS_PAIR_URL;
+          headerBtn.target = '_blank';
+          headerBtn.rel = 'noopener noreferrer';
+      }
+      
+      /* ================= Data Loading ================= */
+      async function getTreasurySol() {
+        try {
+          const response = await fetch(CONFIG.SOL_RPC_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              jsonrpc: '2.0',
+              id: 1,
+              method: 'getBalance',
+              params: [CONFIG.TREASURY],
+            }),
+          });
+          const data = await response.json();
+          if (data.error) throw new Error(data.error.message);
+          // Balance is in lamports, convert to SOL
+          return (data?.result?.value ?? 0) / 1_000_000_000;
+        } catch(e) { 
+            console.error('Error fetching treasury SOL balance:', e);
+            return 0; 
+        }
+      }
+
+      async function getTargetPriceSOL() {
+        if (CONFIG.PRICE_OVERRIDE_SOL != null) return CONFIG.PRICE_OVERRIDE_SOL;
+        // Use the live floor price as the target price.
+        return await getFloorPrice();
+      }
+      
+      function updateProgressUI(targetSol, currentSol) {
+        const tgt = Number(targetSol) || 0;
+        const cur = Number(currentSol) || 0;
+        const pct = tgt > 0 ? Math.max(0, Math.min(100, (cur / tgt) * 100)) : 0;
+        $('#progressBar').style.width = `${pct}%`;
+        $('#missingLabel').textContent = `Missing ${fmtSol(Math.max(0, tgt - cur))} SOL · ${pct.toFixed(1)}%`;
+      }
+      
+      async function refreshLive() {
+        try {
+          const [sol, price] = await Promise.all([getTreasurySol(), getTargetPriceSOL()]);
+          $('#treasurySolLabel').textContent = `${fmtSol(sol)} SOL`;
+          updateProgressUI(price > 0 ? price : 1, sol);
+        } catch {
+          updateProgressUI(1, 0);
+        }
+      }
+
+      async function loadHoldings() {
+        const grid = $('#holding-grid');
+        const countBadge = $('#holding-count');
+        
+        // Initial state before fetch
+        grid.innerHTML = '<div class="col-span-full text-center py-8 opacity-70">Loading...</div>';
+        if (countBadge) countBadge.textContent = '...';
+
+        try {
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            // Magic Eden's API to fetch tokens for a wallet
+            const apiUrl = `https://api-mainnet.magiceden.dev/v2/wallets/${CONFIG.TREASURY}/tokens?offset=0&limit=500&listStatus=both`;
+            const nfts = await getJson(proxyUrl + encodeURIComponent(apiUrl));
+
+            // Filter for NFTs from the target collection
+            const claynos = nfts.filter(nft => nft.collection === CONFIG.COLLECTION_SLUG);
+            
+            if (countBadge) countBadge.textContent = claynos.length;
+            grid.innerHTML = '';
+
+            if (claynos.length > 0) {
+                claynos.forEach(nft => {
+                    const tile = document.createElement('a');
+                    tile.href = `https://magiceden.io/item-details/${nft.mintAddress}`;
+                    tile.target = '_blank';
+                    tile.rel = 'noopener noreferrer';
+                    tile.className = 'nft-tile block rounded-lg overflow-hidden group';
+                    tile.setAttribute('aria-label', `View ${nft.name} on Magic Eden`);
+
+                    tile.innerHTML = `
+                        <div class="aspect-square bg-cover bg-center" style="background-image: url('${nft.image}')"></div>
+                        <div class="p-2 bg-black/10">
+                            <p class="text-xs font-bold truncate group-hover:underline text-text-muted-color">${nft.name}</p>
+                        </div>
+                    `;
+                    grid.appendChild(tile);
+                });
+            } else {
+                grid.innerHTML = `
+                    <div class="text-sm opacity-70 col-span-full text-center py-8">
+                        <p>The treasury is not currently holding any Claynosaurz NFTs.</p>
+                    </div>
+                `;
+            }
+
+        } catch (e) {
+            console.error('Error fetching holdings:', e);
+            if (countBadge) countBadge.textContent = 'Error';
+            grid.innerHTML = `
+                <div class="text-sm opacity-70 col-span-full text-center py-8">
+                    <p class="font-bold" style="color: #F87171;">Could not load held NFTs.</p>
+                    <p>There might be an issue with the API proxy.</p>
+                </div>
+            `;
+        }
+      }
+      
+      async function getFloorPrice() {
+        try {
+          // Using a CORS proxy to bypass browser security restrictions on direct API calls.
+          const proxyUrl = 'https://api.allorigins.win/raw?url=';
+          const apiUrl = `https://api-mainnet.magiceden.dev/v2/collections/${CONFIG.COLLECTION_SLUG}/stats`;
+          const stats = await getJson(proxyUrl + encodeURIComponent(apiUrl));
+          // floorPrice is in lamports, 1 SOL = 1,000,000,000 lamports
+          return (stats?.floorPrice ?? 0) / 1_000_000_000;
+        } catch(e) {
+          console.error('Error fetching floor price from Magic Eden:', e);
+          return 0;
+        }
+      }
+
+      async function loadFloorPriceLabel() {
+        const floorPriceLabel = $('#floorPriceLabel');
+        try {
+          const price = await getFloorPrice();
+          if (price > 0) {
+            floorPriceLabel.textContent = `${fmtSol(price)} SOL`;
+          } else {
+            floorPriceLabel.textContent = 'Not listed';
+          }
+        } catch (e) {
+          floorPriceLabel.textContent = `Error`;
+          console.error('floor price', e);
+        }
+      }
+
+      /* ================= App Initialization ================= */
+      (async function init() {
+        const shortenAddress = (address, chars = 4) => {
+            if (!address) return '';
+            return `${address.substring(0, chars)}...${address.substring(address.length - chars)}`;
+        };
+
+        /* Treasury Wallet Info Setup */
+        const treasuryAddress = CONFIG.TREASURY;
+        const shortAddress = shortenAddress(treasuryAddress, 4);
+        const treasuryLink = $('#treasuryLink');
+        const shortTreasuryAddressSpan = $('#shortTreasuryAddress');
+        const copyTreasuryBtn = $('#copyTreasury');
+        const copyTreasuryText = $('#copyTreasuryText');
+
+        if (treasuryLink && shortTreasuryAddressSpan) {
+            treasuryLink.href = `https://solscan.io/account/${treasuryAddress}`;
+            shortTreasuryAddressSpan.textContent = shortAddress;
+        }
+        if (copyTreasuryBtn) {
+            copyTreasuryBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(treasuryAddress).then(() => {
+                    const originalIcon = copyTreasuryBtn.querySelector('i');
+                    copyTreasuryText.textContent = 'Copied!';
+                    originalIcon.setAttribute('data-feather', 'check');
+                    feather.replace();
+                    copyTreasuryBtn.disabled = true;
+
+                    setTimeout(() => {
+                        copyTreasuryText.textContent = 'Copy';
+                        originalIcon.setAttribute('data-feather', 'copy');
+                        feather.replace();
+                        copyTreasuryBtn.disabled = false;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy address: ', err);
+                });
+            });
+        }
+        
+        /* Token CA Info Setup */
+        const tokenCA = CONFIG.TOKEN_CA;
+        if (tokenCA) {
+            const shortTokenAddress = shortenAddress(tokenCA, 4);
+            const tokenCALink = $('#tokenCALink');
+            const shortTokenCASpan = $('#shortTokenCA');
+            const copyTokenCABtn = $('#copyTokenCA');
+            const copyTokenCAText = $('#copyTokenCAText');
+
+            if (tokenCALink && shortTokenCASpan) {
+                tokenCALink.href = `https://solscan.io/token/${tokenCA}`;
+                shortTokenCASpan.textContent = `CA: ${shortTokenAddress}`;
+            }
+
+            if (copyTokenCABtn) {
+                copyTokenCABtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(tokenCA).then(() => {
+                        const originalIcon = copyTokenCABtn.querySelector('i');
+                        copyTokenCAText.textContent = 'Copied!';
+                        originalIcon.setAttribute('data-feather', 'check');
+                        feather.replace();
+                        copyTokenCABtn.disabled = true;
+
+                        setTimeout(() => {
+                            copyTokenCAText.textContent = 'Copy';
+                            originalIcon.setAttribute('data-feather', 'copy');
+                            feather.replace();
+                            copyTokenCABtn.disabled = false;
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy address: ', err);
+                    });
+                });
+            }
+        }
+
+        try {
+          // Load essential data first
+          await Promise.all([refreshLive(), loadFloorPriceLabel()]);
+          
+          // Load holdings separately as it's not critical path
+          loadHoldings(); 
+
+          setInterval(refreshLive, 10_000); // Refreshes treasury balance and progress
+          setInterval(loadFloorPriceLabel, 10_000); // Refreshes floor price every 10 seconds
+          setInterval(loadHoldings, 60_000); // Refresh holdings every minute
+        } catch (error) {
+           console.error("Failed to load initial live data.", error);
+        }
+      })();
+    </script>
+  </body>
+</html>
